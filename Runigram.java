@@ -161,19 +161,18 @@ public class Runigram {
 		// create new color image array with the new desired size
 		Color[][] newImage = new Color[newHeight][newWidth];
 		// calculate the 2 scaling factors for width and hight
-		int scaleWidth = (originalWidth / newWidth);
-		int scaleHeight = (originalHeight / newHeight);
+		double scaleWidth = (double) originalWidth / newWidth;
+		double scaleHeight = (double) originalHeight / newHeight;
 
 		for (int i = 0; i < newHeight; i++) {
 			for (int j = 0; j < newWidth; j++) {
 				// calculate the i and j indexes of the pixel in the original image
 				// correspond to the new i j indexes of the new pixel in the scaled i
-				//int iOriginal = (int) (i * scaleHeight);
-				//int jOriginal = (int) (j * scaleWidth);
+				int iOriginal = (int) (i * scaleHeight);
+				int jOriginal = (int) (j * scaleWidth);
 
-		
 				// now we assign the original pixel to its position in the new scaled image
-				newImage[i][j] = image[i*(originalHeight/newHeight)][j*(originalWidth/newWidth)];
+				newImage[i][j] = image[iOriginal][jOriginal];
 			}
 		}
 		return newImage;
@@ -189,8 +188,20 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		int r1 = c1.getRed();
+		int g1 = c1.getGreen();
+		int b1 = c1.getBlue();
+
+		int r2 = c2.getRed();
+		int g2 = c2.getGreen();
+		int b2 = c2.getBlue();
+
+		// linear combination of both colors to get the new color
+		int rBlend = (int) ((alpha * r1) + ((alpha - 1) * r2));
+		int gBlend = (int) ((alpha * g1) + ((alpha - 1) * g2));
+		int bBlend = (int) ((alpha * b1) + ((alpha - 1) * b2));
+
+		return new Color(rBlend, gBlend, bBlend);
 	}
 
 	/**
@@ -201,9 +212,24 @@ public class Runigram {
 	 * and (1 - alpha) part the second image.
 	 * The two images must have the same dimensions.
 	 */
-	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+	public static Color[][] blendImage(Color[][] image1, Color[][] image2, double alpha) {
+		// since both images have the same dimensions we'll use dimensions of image1
+		int numRows = image1.length;
+		int numCols = image1[0].length;
+
+		Color blendedImage[][] = new Color[numRows][numCols];
+
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				// we create a new blended color per pixel by calling the blended function
+				Color newBlendedColor = blend(image1[i][j], image2[i][j], alpha);
+
+				blendedImage[i][j] = newBlendedColor;
+
+			}
+		}
+
+		return blendedImage;
 	}
 
 	/**
