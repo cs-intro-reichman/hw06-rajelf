@@ -217,7 +217,7 @@ public class Runigram {
 		int numRows = image1.length;
 		int numCols = image1[0].length;
 
-		Color blendedImage[][] = new Color[numRows][numCols];
+		Color [][]blendedImage = new Color[numRows][numCols];
 
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numCols; j++) {
