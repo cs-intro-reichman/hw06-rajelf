@@ -197,10 +197,9 @@ public class Runigram {
 		int b2 = c2.getBlue();
 
 		// linear combination of both colors to get the new color
-		int rBlend = (int) ((alpha * r1) + ((alpha - 1) * r2));
-		int gBlend = (int) ((alpha * g1) + ((alpha - 1) * g2));
-		int bBlend = (int) ((alpha * b1) + ((alpha - 1) * b2));
-
+		int rBlend = (int) ((alpha * r1) + ((1 - alpha) * r2));
+		int gBlend = (int) ((alpha * g1) + ((1 - alpha) * g2));
+		int bBlend = (int) ((alpha * b1) + ((1 - alpha) * b2));
 		return new Color(rBlend, gBlend, bBlend);
 	}
 
@@ -239,7 +238,22 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		//// Replace this comment with your code
+		int sourceRows = source.length;
+		int sourceCols = source[0].length;
+		Color[][] scaledTarget = target;
+
+		// if the dimensions are different then we scale the image
+		if (target.length != sourceRows || target[0].length != sourceCols) {
+			scaledTarget = scaled(target, sourceCols, sourceRows);
+		}
+
+		for (int i = 0; i <= n; i++) {
+			double alpha = (double) (n - i) / n;
+			Color[][] morphedStep = blendImage(source, scaledTarget, alpha); //
+
+			Runigram.display(morphedStep);
+			StdDraw.pause(500);
+		}
 	}
 
 	/** Creates a canvas for the given image. */
