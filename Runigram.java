@@ -212,7 +212,7 @@ public class Runigram {
 	 * and (1 - alpha) part the second image.
 	 * The two images must have the same dimensions.
 	 */
-	public static Color[][] blendImage(Color[][] image1, Color[][] image2, double alpha) {
+	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
 		// since both images have the same dimensions we'll use dimensions of image1
 		int numRows = image1.length;
 		int numCols = image1[0].length;
