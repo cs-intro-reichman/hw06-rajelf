@@ -7,6 +7,7 @@ import java.awt.Color;
 public class Runigram {
 
 	public static void main(String[] args) {
+		
 
 		//// Hide / change / add to the testing code below, as needed.
 
@@ -16,15 +17,15 @@ public class Runigram {
 
 		// Creates an image which will be the result of various
 		// image processing operations:
-		Color[][] imageOut;
+		//Color[][] imageOut;
 
 		// Tests the horizontal flipping of an image:
-		imageOut = flippedHorizontally(tinypic);
-		System.out.println();
-		print(imageOut);
+		//imageOut = flippedHorizontally(tinypic);
+		//System.out.println();
+		//print(imageOut);
 		// luminance test
-		Color originalColor = new Color(128, 0, 0);
-		System.out.println(luminance(originalColor));
+		//Color originalColor = new Color(128, 0, 0);
+		//System.out.println(luminance(originalColor));
 
 		//// Write here whatever code you need in order to test your work.
 		//// You can reuse / overide the contents of the imageOut array.
