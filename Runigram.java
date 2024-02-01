@@ -250,7 +250,7 @@ public class Runigram {
 
 		for (int i = 0; i <= n; i++) {
 			double alpha = (double) (n - i) / n;
-			Color[][] morphedStep = blendImage(source, scaledTarget, alpha); //
+			Color[][] morphedStep = blend(source, scaledTarget, alpha); //
 
 			Runigram.display(morphedStep);
 			StdDraw.pause(500);
